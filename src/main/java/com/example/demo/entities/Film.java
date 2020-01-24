@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ import javax.persistence.Table;
 import com.example.demo.entities.stringconverter.StringListConverter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,7 +36,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Film {
+public class Film  implements Serializable {
+
+	
+	private static final long serialVersionUID = -271716256873995183L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

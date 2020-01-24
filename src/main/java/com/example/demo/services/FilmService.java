@@ -2,18 +2,17 @@ package com.example.demo.services;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Film;
 import com.example.demo.entities.FilmCategory;
-import com.example.demo.repositories.CategoryRepository;
+
 import com.example.demo.repositories.FilmCategoryRepository;
 import com.example.demo.repositories.FilmRepository;
-import com.example.demo.repositories.LanguageRepository;
+
 
 
 
@@ -24,8 +23,9 @@ public class FilmService {
 	private FilmRepository filmRepository;
 	@Autowired
 	private FilmCategoryRepository filmcatRepository;
-	@Autowired
-	private LanguageRepository languageRepository;
+	
+//	@Autowired
+//	private LanguageRepository languageRepository;
 
 	
 	public List<Film> getAllFilms() {

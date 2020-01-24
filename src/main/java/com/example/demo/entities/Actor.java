@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 
@@ -22,12 +23,17 @@ import lombok.Setter;
 @Entity
 @Getter@Setter
 @AllArgsConstructor@NoArgsConstructor
-public class Actor {
+public class Actor  implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5883841491291924737L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="actor_id", unique = true,nullable = false)
-	private Integer actor_id;
+	private Integer id;
 	
 	@Column(name = "first_name" ,nullable = false, length = 45)
 	private String first_name;
