@@ -55,7 +55,7 @@ public class FilmService {
 				
 		List<FilmCategory> filmCats = filmcatRepository.findAll();
 		
-		//return  filmCats;
+		return  filmCats;
 				
 				
 	}

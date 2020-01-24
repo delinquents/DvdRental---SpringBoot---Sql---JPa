@@ -67,11 +67,11 @@ public class DvdRentalController {
 	
 	
 	@GetMapping("/films/{id}")
-	public String getFilms(@PathVariable Integer id) {
+	public Film getFilms(@PathVariable Integer id) {
 		
-		filmService.getFilmById(id);
+		Film film = filmService.getFilmById(id);
 		
-		return  "SADSD";
+		return  film;
 	}
 	
 	
