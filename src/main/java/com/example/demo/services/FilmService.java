@@ -13,6 +13,7 @@ import com.example.demo.entities.FilmCategory;
 import com.example.demo.repositories.CategoryRepository;
 import com.example.demo.repositories.FilmCategoryRepository;
 import com.example.demo.repositories.FilmRepository;
+import com.example.demo.repositories.LanguageRepository;
 
 
 
@@ -23,7 +24,8 @@ public class FilmService {
 	private FilmRepository filmRepository;
 	@Autowired
 	private FilmCategoryRepository filmcatRepository;
-	
+	@Autowired
+	private LanguageRepository languageRepository;
 
 	
 	public List<Film> getAllFilms() {
