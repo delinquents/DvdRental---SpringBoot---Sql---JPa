@@ -38,19 +38,15 @@ public class FilmService {
 	
 	
 	
-	public String getFilmById(Integer id) {
+	public Film getFilmById(Integer id) {
 		
-//		Film film  = filmRepository.findById(id).get();
-//		
-//		System.out.println(film.getFulltext());
-//		S
+
 		System.out.println("Called filmBy Id " + id);
-//		Object obj = filmRepository.findById(id).get();
+		Film film = filmRepository.findById(id).get();
 		
-		System.out.println(filmRepository.findById(1).get().toString());
-		System.out.println("");
+
 		
-		return "film";
+		return film;
 	}
 	
 	
