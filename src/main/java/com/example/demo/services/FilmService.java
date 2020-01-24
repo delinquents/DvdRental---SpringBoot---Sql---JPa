@@ -22,8 +22,6 @@ public class FilmService {
 	@Autowired
 	private FilmRepository filmRepository;
 	@Autowired
-	private CategoryRepository categoryRepository;
-	@Autowired
 	private FilmCategoryRepository filmcatRepository;
 	
 
@@ -38,13 +36,10 @@ public class FilmService {
 	
 	
 	
-	public Film getFilmById(Integer id) {
-		
+	public Film getFilmById(Integer id) {		
 
 		System.out.println("Called filmBy Id " + id);
 		Film film = filmRepository.findById(id).get();
-		
-
 		
 		return film;
 	}

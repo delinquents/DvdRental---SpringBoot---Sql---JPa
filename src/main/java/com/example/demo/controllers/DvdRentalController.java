@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.Actor;
+import com.example.demo.entities.Category;
 import com.example.demo.entities.Film;
 import com.example.demo.entities.FilmCategory;
 import com.example.demo.services.ActorService;
+import com.example.demo.services.CategoryService;
 import com.example.demo.services.FilmService;
 
 
@@ -30,15 +32,17 @@ public class DvdRentalController {
 	
 	private ActorService actorService;
 	private FilmService filmService;
+	private CategoryService categoryService;
 	
 	
+
 	
 	
-	public DvdRentalController(ActorService actorService, FilmService filmService) {		
+	public DvdRentalController(ActorService actorService, FilmService filmService, CategoryService categoryService) {		
 		this.actorService = actorService;
 		this.filmService = filmService;
+		this.categoryService = categoryService;
 	}
-	
 	
 	//http://localhost:8080/dvd-rental?page=0&limit=5
 	@GetMapping
@@ -55,7 +59,7 @@ public class DvdRentalController {
 		
 		return  filmService.getAllFilms();
 	}
-	
+	//http://localhost:8080/dvd-rental/film_category
 	@GetMapping("/film_category")
 	public List<FilmCategory> getFilmsCategories() {
 		
@@ -65,7 +69,7 @@ public class DvdRentalController {
 	}
 	
 	
-	
+	//http://localhost:8080/dvd-rental/films/1
 	@GetMapping("/films/{id}")
 	public Film getFilms(@PathVariable Integer id) {
 		
@@ -76,6 +80,14 @@ public class DvdRentalController {
 	
 	
 	
+	//http://localhost:8080/dvd-rental/categories
+	@GetMapping("/categories")
+	public List<Category> getCategories() {
+		
+		List<Category> categories = categoryService.getAllCategories();
+		
+		return  categories;
+	}
 	
 
 }
