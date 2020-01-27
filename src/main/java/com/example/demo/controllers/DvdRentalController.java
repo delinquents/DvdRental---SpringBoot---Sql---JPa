@@ -17,7 +17,7 @@ import com.example.demo.entities.Customer;
 import com.example.demo.entities.Film;
 import com.example.demo.entities.FilmCategory;
 import com.example.demo.entities.Inventory;
-
+import com.example.demo.entities.Rental;
 import com.example.demo.entities.Staff;
 import com.example.demo.entities.Store;
 import com.example.demo.services.ActorService;
@@ -26,6 +26,7 @@ import com.example.demo.services.CityService;
 import com.example.demo.services.CountryService;
 import com.example.demo.services.CustomerService;
 import com.example.demo.services.FilmService;
+import com.example.demo.services.RentalService;
 import com.example.demo.services.StaffService;
 import com.example.demo.services.StoreService;
 
@@ -41,11 +42,12 @@ public class DvdRentalController {
 	private CustomerService customerService;
 	private StaffService staffService;
 	private StoreService storeService;
+	private RentalService rentalService;
 
 	public DvdRentalController(ActorService actorService, FilmService filmService, CategoryService categoryService,
 			CountryService countryService, CityService cityService, CustomerService customerService,
-			StaffService staffService, StoreService storeService) {
-		super();
+			StaffService staffService, StoreService storeService, RentalService rentalService) {
+		
 		this.actorService = actorService;
 		this.filmService = filmService;
 		this.categoryService = categoryService;
@@ -54,6 +56,7 @@ public class DvdRentalController {
 		this.customerService = customerService;
 		this.staffService = staffService;
 		this.storeService = storeService;
+		this.rentalService = rentalService;
 	}
 
 	// http://localhost:8080/dvd-rental?page=0&limit=5
@@ -160,5 +163,14 @@ public class DvdRentalController {
 
 		return stores;
 	}
+	// http://localhost:8080/dvd-rental/rentals
+		@GetMapping("/rentals")
+	public List<Rental> getAllRentals() {
+		
+		List<Rental> rentals = rentalService.getAllRentals();
+		return rentals;
+	}
+	
+		
 
 }

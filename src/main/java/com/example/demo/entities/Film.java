@@ -90,7 +90,7 @@ public class Film  implements Serializable {
 	@JsonIgnore
 	private List<FilmCategory> film_categories = new ArrayList<FilmCategory>();
 	
-	//TODO
+
 	@OneToMany( mappedBy = "film",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)	

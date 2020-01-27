@@ -24,6 +24,7 @@ import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -81,6 +82,21 @@ public class Staff implements Serializable {
 	
 	@Column(name = "last_update" , nullable = false)	
 	private Timestamp last_update;
+	
+	
+//	@OneToMany( mappedBy = "inventory",
+//            fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL)		
+//	@JsonIgnore
+//	private List<Rental> rentals = new ArrayList<Rental>();
+	
+	
+//	//TODO ?????
+//	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//	@JoinColumn(name = "staff_id")
+//	@JsonIgnore
+//	private List<Staff> staffs = new ArrayList<>();
+	
 	
 	@Lob
 	@Column(name = "picure")
