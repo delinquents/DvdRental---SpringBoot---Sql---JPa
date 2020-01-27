@@ -32,9 +32,7 @@ import lombok.Setter;
 public class Country  implements Serializable  {
 
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1200958173303481948L;
 
 	@Id
@@ -46,8 +44,8 @@ public class Country  implements Serializable  {
 	private String country;
 	
 	@OneToMany( mappedBy = "country",
-			fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)	
+			    fetch = FetchType.LAZY,
+                cascade = CascadeType.ALL)	
     @JsonIgnore
 	private List<City> cities = new ArrayList<City>();
 	

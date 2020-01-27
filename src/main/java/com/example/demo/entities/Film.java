@@ -89,5 +89,12 @@ public class Film  implements Serializable {
 	@JoinColumn(name = "film_id")
 	@JsonIgnore
 	private List<FilmCategory> film_categories = new ArrayList<FilmCategory>();
+	
+	//TODO
+	@OneToMany( mappedBy = "film",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)	
+	@JsonIgnore
+	private List<Inventory> invetories = new ArrayList<Inventory>();
 
 }
