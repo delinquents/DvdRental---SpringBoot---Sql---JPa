@@ -75,17 +75,23 @@ public class Customer implements Serializable {
 	@Column(name = "active")
 	private Integer active;
 	
+	@OneToMany( mappedBy = "customer",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)		
+	@JsonIgnore
+	private List<Payment> payments = new ArrayList<Payment>();
+	
 //	//TODO ????????
-//	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
 //	@JoinColumn(name = "customer_id")
 //	@JsonIgnore
 //	private List<Customer> customers = new ArrayList<>();
 	
 	
-//	@OneToMany( mappedBy = "customer",
-//            fetch = FetchType.LAZY,
-//            cascade = CascadeType.ALL)	
-//	@JsonIgnore
-//	private List<Rental> rentals = new ArrayList<Rental>();
+	@OneToMany( mappedBy = "customer",
+               fetch = FetchType.LAZY,
+               cascade = CascadeType.ALL)	
+	@JsonIgnore
+	private List<Rental> rentals = new ArrayList<Rental>();
 
 }

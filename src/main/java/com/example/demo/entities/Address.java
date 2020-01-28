@@ -67,14 +67,14 @@ public class Address implements Serializable {
 
 	
 	@OneToMany( mappedBy = "address",
-			fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)	
+				fetch = FetchType.LAZY,
+	            cascade = CascadeType.ALL)	
     @JsonIgnore
 	private List<Customer> customers = new ArrayList<Customer>();
 	
 	@OneToMany( mappedBy = "address",
-			fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)	
+				fetch = FetchType.LAZY,
+	            cascade = CascadeType.ALL)	
     @JsonIgnore
 	private List<Staff> staffs = new ArrayList<Staff>();
 	

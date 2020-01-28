@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
-import java.io.Serializable;
+
+
 import java.util.Date;
 
 import javax.persistence.Basic;
@@ -10,12 +11,12 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.example.demo.entities.composedkey.FilmCategoryId;
+import com.example.demo.entities.composedkey.FilmActorId;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -24,31 +25,48 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "film_category")
+@Table(name = "film_actor")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class FilmCategory implements Serializable {
+public class FilmActor {
 
-	private static final long serialVersionUID = -2398564918360703456L;
-
+	
+	
+	
 	@EmbeddedId
-	private FilmCategoryId id;
-
+	private FilmActorId id;
+	
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "film_id", referencedColumnName = "film_id", insertable = false, updatable = false)
 	@JsonIgnore
 	private Film film_id;
-
+	
+	
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "category_id", referencedColumnName = "category_id", insertable = false, updatable = false)
+	@JoinColumn(name = "actor_id", referencedColumnName = "actor_id", insertable = false, updatable = false)
 	@JsonIgnore
-	private Category category_id;
-
+	private Actor actor_id;
+	
+	
 	@Basic(optional = false)
 	@Column(name = "last_update", insertable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date last_update;
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

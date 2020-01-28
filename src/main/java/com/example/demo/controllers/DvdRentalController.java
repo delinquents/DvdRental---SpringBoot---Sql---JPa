@@ -15,8 +15,10 @@ import com.example.demo.entities.City;
 import com.example.demo.entities.Country;
 import com.example.demo.entities.Customer;
 import com.example.demo.entities.Film;
+import com.example.demo.entities.FilmActor;
 import com.example.demo.entities.FilmCategory;
 import com.example.demo.entities.Inventory;
+import com.example.demo.entities.Payment;
 import com.example.demo.entities.Rental;
 import com.example.demo.entities.Staff;
 import com.example.demo.entities.Store;
@@ -26,6 +28,7 @@ import com.example.demo.services.CityService;
 import com.example.demo.services.CountryService;
 import com.example.demo.services.CustomerService;
 import com.example.demo.services.FilmService;
+import com.example.demo.services.PaymentService;
 import com.example.demo.services.RentalService;
 import com.example.demo.services.StaffService;
 import com.example.demo.services.StoreService;
@@ -43,11 +46,15 @@ public class DvdRentalController {
 	private StaffService staffService;
 	private StoreService storeService;
 	private RentalService rentalService;
+	private PaymentService paymentService;
+
+
 
 	public DvdRentalController(ActorService actorService, FilmService filmService, CategoryService categoryService,
 			CountryService countryService, CityService cityService, CustomerService customerService,
-			StaffService staffService, StoreService storeService, RentalService rentalService) {
-		
+			StaffService staffService, StoreService storeService, RentalService rentalService,
+			PaymentService paymentService) {
+		super();
 		this.actorService = actorService;
 		this.filmService = filmService;
 		this.categoryService = categoryService;
@@ -57,6 +64,7 @@ public class DvdRentalController {
 		this.staffService = staffService;
 		this.storeService = storeService;
 		this.rentalService = rentalService;
+		this.paymentService = paymentService;
 	}
 
 	// http://localhost:8080/dvd-rental?page=0&limit=5
@@ -146,7 +154,7 @@ public class DvdRentalController {
 		return staffs;
 	}
 
-	// http://localhost:8080/dvd-rental/inventories
+	// http://localhost:8080/dvd-rental/inventories   //TODO PAGINATION
 	@GetMapping("/inventories")
 	public List<Inventory> getAllInvetories() {
 
@@ -163,7 +171,7 @@ public class DvdRentalController {
 
 		return stores;
 	}
-	// http://localhost:8080/dvd-rental/rentals
+	// http://localhost:8080/dvd-rental/rentals   //TODO PAGINATION
 		@GetMapping("/rentals")
 	public List<Rental> getAllRentals() {
 		
@@ -171,6 +179,21 @@ public class DvdRentalController {
 		return rentals;
 	}
 	
+		// http://localhost:8080/dvd-rental/payments  //TODO PAGINATION
+		@GetMapping("/payments")
+	public List<Payment> getAllPayments() {
 		
+		List<Payment> payments = paymentService.getAllPayments();
+		return payments;
+	}
+		
+		
+		// http://localhost:8080/dvd-rental/film_actor
+		@GetMapping("/film_actor")
+	public List<FilmActor> getAllFilmActors() {
+		
+		List<FilmActor> filmActors = actorService.getAllFilmActors();
+		return filmActors;
+	}
 
 }

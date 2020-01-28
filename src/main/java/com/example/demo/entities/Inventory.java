@@ -56,8 +56,8 @@ public class Inventory  implements Serializable  {
     @JoinColumn(name = "store_id" , nullable = false)
 	private Store store;
 	
-//	//TODO ?????
-//	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	//TODO ?????
+//	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
 //	@JoinColumn(name = "inventory_id")
 //	@JsonIgnore
 //	private List<Inventory> inventories = new ArrayList<>();
@@ -67,11 +67,11 @@ public class Inventory  implements Serializable  {
 	private Timestamp last_update;
 	
 	
-//	@OneToMany( mappedBy = "inventory",
-//            fetch = FetchType.LAZY,
-//            cascade = CascadeType.ALL)	
-//	@JsonIgnore	
-//	private List<Rental> rentals = new ArrayList<Rental>();
+	@OneToMany( mappedBy = "inventory",
+	            fetch = FetchType.LAZY,
+	            cascade = CascadeType.ALL)	
+	@JsonIgnore	
+	private List<Rental> rentals = new ArrayList<Rental>();
 
 
 	

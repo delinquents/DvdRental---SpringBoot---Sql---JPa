@@ -85,15 +85,20 @@ public class Film  implements Serializable {
 	@Column(name = "fulltext", nullable = false)
 	private String fulltext;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "film_id")
 	@JsonIgnore
 	private List<FilmCategory> film_categories = new ArrayList<FilmCategory>();
 	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "film_id")
+	@JsonIgnore
+	private List<FilmActor> film_actors = new ArrayList<FilmActor>();
+	
 
 	@OneToMany( mappedBy = "film",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)	
+	            fetch = FetchType.LAZY,
+	            cascade = CascadeType.ALL)	
 	@JsonIgnore
 	private List<Inventory> invetories = new ArrayList<Inventory>();
 

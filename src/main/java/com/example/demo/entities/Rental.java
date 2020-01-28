@@ -24,6 +24,7 @@ import com.example.demo.embeddable.CustomerEmbaddable;
 import com.example.demo.embeddable.InventoryEmbaddable;
 import com.example.demo.embeddable.StaffEmbaddable;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -53,42 +54,42 @@ public class Rental implements Serializable  {
 	private Timestamp rental_date;
 	
 	
-//	//TODO
-//	@ManyToOne(fetch = FetchType.LAZY, optional = false)	
-//    @JoinColumn(name = "inventory_id" , nullable = false)	
-//	private Inventory inventory;
+	//TODO
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)	
+    @JoinColumn(name = "inventory_id" , nullable = false)	
+	private Inventory inventory;
+
 	
-	/*
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "inventory_id")
-	private List<Inventory> inventories = new ArrayList<>();
-	*/ 
+//	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//	@JoinColumn(name = "inventory_id")
+//	private List<Inventory> inventories = new ArrayList<>();
 	
-	@Column(name="inventory_id")
-	private Integer inventory_id;
 	
-	@Column(name="customer_id")
-	private Integer customer_id;
-/*
+//	@Column(name="inventory_id")
+//	private Integer inventory_id;
+	
+//	@Column(name="customer_id")
+//	private Integer customer_id;
+
  
 //	@Embedded
 //	private InventoryEmbaddable inventory;
 	
-//	//TODO
-//	@ManyToOne(fetch = FetchType.LAZY, optional = false)	
-//    @JoinColumn(name = "customer_id" , nullable = false)	
-//	private Customer customer;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)	
+    @JoinColumn(name = "customer_id" , nullable = false)	
+	private Customer customer;
 	
 
 	
 
- */
-	/* OneDirection
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "customer_id")
-	private List<Customer> customers = new ArrayList<>();
+ 
 	
-	*/
+//    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
+//	@JoinColumn(name = "customer_id")
+//	private List<Customer> customers = new ArrayList<>();
+	
+	
 //	@Embedded
 //	@AttributeOverride(name="first_name", column=@Column(name="customer"))
 //	private CustomerEmbaddable customer;
@@ -96,13 +97,13 @@ public class Rental implements Serializable  {
 	@Column(name = "return_date")
 	private Timestamp return_date;
 	
-	@Column(name="staff_id")
-	private Integer staff_id;
+//	@Column(name="staff_id")
+//	private Integer staff_id;
 	
-//	//TODO
-//	@ManyToOne(fetch = FetchType.LAZY, optional = false)	
-//    @JoinColumn(name = "staff_id" , nullable = false)
-//	private Staff staff;
+	//TODO
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)	
+    @JoinColumn(name = "staff_id" , nullable = false)
+	private Staff staff;
 	
 
 	
@@ -119,6 +120,11 @@ public class Rental implements Serializable  {
 	@Column(name = "last_update", nullable = false)
 	private Timestamp last_update;
 	
+	@OneToMany( mappedBy = "rental",
+	            fetch = FetchType.LAZY,
+	            cascade = CascadeType.ALL)		
+	@JsonIgnore
+	private List<Payment> payments = new ArrayList<Payment>();
 	
 
 }

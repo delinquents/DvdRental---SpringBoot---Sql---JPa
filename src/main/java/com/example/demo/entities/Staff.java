@@ -84,15 +84,21 @@ public class Staff implements Serializable {
 	private Timestamp last_update;
 	
 	
-//	@OneToMany( mappedBy = "inventory",
-//            fetch = FetchType.LAZY,
-//            cascade = CascadeType.ALL)		
-//	@JsonIgnore
-//	private List<Rental> rentals = new ArrayList<Rental>();
+	@OneToMany( mappedBy = "staff",
+	            fetch = FetchType.LAZY,
+	            cascade = CascadeType.ALL)		
+	@JsonIgnore
+	private List<Rental> rentals = new ArrayList<Rental>();
+	
+	@OneToMany( mappedBy = "staff",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)		
+	@JsonIgnore
+	private List<Payment> payments = new ArrayList<Payment>();
 	
 	
 //	//TODO ?????
-//	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
 //	@JoinColumn(name = "staff_id")
 //	@JsonIgnore
 //	private List<Staff> staffs = new ArrayList<>();

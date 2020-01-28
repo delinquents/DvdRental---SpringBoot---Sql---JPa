@@ -10,13 +10,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Actor;
+import com.example.demo.entities.FilmActor;
 import com.example.demo.repositories.ActorRepository;
+import com.example.demo.repositories.FilmActorRepository;
 
 @Service
 public class ActorService {
 	
   @Autowired
-  ActorRepository actorRepository;
+  private ActorRepository actorRepository;
+  @Autowired
+  private FilmActorRepository filmActorRepository;
+  
 	
 	
   public List<Actor> getAllActors(Integer page, Integer limit) {	  
@@ -27,6 +32,13 @@ public class ActorService {
 	  return pagedResult.getContent();
   }
   
+  
+  public List<FilmActor> getAllFilmActors() {
+	  
+	  List<FilmActor> filmActors = filmActorRepository.findAll();
+	  
+	  return filmActors;
+  }
   
   
 	
