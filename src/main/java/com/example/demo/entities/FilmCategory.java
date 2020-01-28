@@ -17,6 +17,7 @@ import javax.persistence.TemporalType;
 
 import com.example.demo.entities.composedkey.FilmCategoryId;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +30,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class FilmCategory implements Serializable {
 
 	private static final long serialVersionUID = -2398564918360703456L;

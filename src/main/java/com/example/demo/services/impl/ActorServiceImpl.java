@@ -1,4 +1,4 @@
-package com.example.demo.services;
+package com.example.demo.services.impl;
 
 
 import java.util.List;
@@ -13,9 +13,10 @@ import com.example.demo.entities.Actor;
 import com.example.demo.entities.FilmActor;
 import com.example.demo.repositories.ActorRepository;
 import com.example.demo.repositories.FilmActorRepository;
+import com.example.demo.service.ActorService;
 
 @Service
-public class ActorService {
+public class ActorServiceImpl implements ActorService {
 	
   @Autowired
   private ActorRepository actorRepository;

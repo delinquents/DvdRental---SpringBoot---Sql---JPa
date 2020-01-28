@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,39 +23,45 @@ import com.example.demo.entities.Payment;
 import com.example.demo.entities.Rental;
 import com.example.demo.entities.Staff;
 import com.example.demo.entities.Store;
-import com.example.demo.services.ActorService;
-import com.example.demo.services.CategoryService;
-import com.example.demo.services.CityService;
-import com.example.demo.services.CountryService;
-import com.example.demo.services.CustomerService;
-import com.example.demo.services.FilmService;
-import com.example.demo.services.PaymentService;
-import com.example.demo.services.RentalService;
-import com.example.demo.services.StaffService;
-import com.example.demo.services.StoreService;
+import com.example.demo.entities.views.FilmListView;
+import com.example.demo.services.impl.ActorServiceImpl;
+import com.example.demo.services.impl.CategoryServiceImpl;
+import com.example.demo.services.impl.CityServiceImpl;
+import com.example.demo.services.impl.CountryServiceImpl;
+import com.example.demo.services.impl.CustomerServiceImpl;
+import com.example.demo.services.impl.FilmListViewServiceImpl;
+import com.example.demo.services.impl.FilmServiceImpl;
+
+import com.example.demo.services.impl.PaymentServiceImpl;
+import com.example.demo.services.impl.RentalServiceImpl;
+import com.example.demo.services.impl.StaffServiceImpl;
+import com.example.demo.services.impl.StoreServiceImpl;
+
 
 @RestController
 @RequestMapping("dvd-rental")
 public class DvdRentalController {
 
-	private ActorService actorService;
-	private FilmService filmService;
-	private CategoryService categoryService;
-	private CountryService countryService;
-	private CityService cityService;
-	private CustomerService customerService;
-	private StaffService staffService;
-	private StoreService storeService;
-	private RentalService rentalService;
-	private PaymentService paymentService;
+	
+	private ActorServiceImpl actorService;
+	private FilmServiceImpl filmService;
+	private CategoryServiceImpl categoryService;
+	private CountryServiceImpl countryService;
+	private CityServiceImpl cityService;
+	private CustomerServiceImpl customerService;
+	private StaffServiceImpl staffService;
+	private StoreServiceImpl storeService;
+	private RentalServiceImpl rentalService;
+	private PaymentServiceImpl paymentService;
+	private FilmListViewServiceImpl filmViewService;
 
 
 
-	public DvdRentalController(ActorService actorService, FilmService filmService, CategoryService categoryService,
-			CountryService countryService, CityService cityService, CustomerService customerService,
-			StaffService staffService, StoreService storeService, RentalService rentalService,
-			PaymentService paymentService) {
-		super();
+
+	public DvdRentalController(ActorServiceImpl actorService, FilmServiceImpl filmService, CategoryServiceImpl categoryService,
+			CountryServiceImpl countryService, CityServiceImpl cityService, CustomerServiceImpl customerService,
+			StaffServiceImpl staffService, StoreServiceImpl storeService, RentalServiceImpl rentalService,
+			PaymentServiceImpl paymentService, FilmListViewServiceImpl filmViewService) {		
 		this.actorService = actorService;
 		this.filmService = filmService;
 		this.categoryService = categoryService;
@@ -65,8 +72,10 @@ public class DvdRentalController {
 		this.storeService = storeService;
 		this.rentalService = rentalService;
 		this.paymentService = paymentService;
+		this.filmViewService = filmViewService;
 	}
-
+	
+	
 	// http://localhost:8080/dvd-rental?page=0&limit=5
 	@GetMapping
 	public List<Actor> getActors(@RequestParam(value = "page", defaultValue = "1") int page,
@@ -77,7 +86,7 @@ public class DvdRentalController {
 		return actors;
 
 	}
-
+	// http://localhost:8080/dvd-rental/films
 	@GetMapping("/films")
 	public List<Film> getFilms() {
 
@@ -154,11 +163,12 @@ public class DvdRentalController {
 		return staffs;
 	}
 
-	// http://localhost:8080/dvd-rental/inventories   //TODO PAGINATION
+	// http://localhost:8080/dvd-rental/inventories?page=0&limit=5  
 	@GetMapping("/inventories")
-	public List<Inventory> getAllInvetories() {
+	public List<Inventory> getAllInvetories(@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam(value = "limit", defaultValue = "25") int limit) {
 
-		List<Inventory> invetories = storeService.getAllInventories();
+		List<Inventory> invetories = storeService.getAllInventories(page,limit);
 
 		return invetories;
 	}
@@ -171,19 +181,21 @@ public class DvdRentalController {
 
 		return stores;
 	}
-	// http://localhost:8080/dvd-rental/rentals   //TODO PAGINATION
+	// http://localhost:8080/dvd-rental/rentals?page=0&limit=5   
 		@GetMapping("/rentals")
-	public List<Rental> getAllRentals() {
+	public List<Rental> getAllRentals(@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam(value = "limit", defaultValue = "25") int limit) {
 		
-		List<Rental> rentals = rentalService.getAllRentals();
+		List<Rental> rentals = rentalService.getAllRentals(page,limit);
 		return rentals;
 	}
 	
-		// http://localhost:8080/dvd-rental/payments  //TODO PAGINATION
+		// http://localhost:8080/dvd-rental/payments?page=0&limit=5  //TODO PAGINATION
 		@GetMapping("/payments")
-	public List<Payment> getAllPayments() {
+	public List<Payment> getAllPayments(@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam(value = "limit", defaultValue = "25") int limit) {
 		
-		List<Payment> payments = paymentService.getAllPayments();
+		List<Payment> payments = paymentService.getAllPayments(page,limit);
 		return payments;
 	}
 		
@@ -195,5 +207,20 @@ public class DvdRentalController {
 		List<FilmActor> filmActors = actorService.getAllFilmActors();
 		return filmActors;
 	}
-
+		
+		// http://localhost:8080/dvd-rental/filmView
+		@GetMapping("/filmView")
+		public List<FilmListView> getFilmsView() {
+			
+			List<FilmListView> filmsView = filmViewService.getListOfFIlms();
+			
+			return filmsView;
+		}
+		
+		@GetMapping("/inventory/{id}")
+		public Boolean isInventoryInStock(@PathVariable int id) {
+			Boolean inStock = storeService.isInvetoryInStock(id);
+			return inStock;
+		}
+		
 }

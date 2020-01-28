@@ -32,7 +32,6 @@ import lombok.Setter;
 public class Country  implements Serializable  {
 
 	
-	
 	private static final long serialVersionUID = 1200958173303481948L;
 
 	@Id

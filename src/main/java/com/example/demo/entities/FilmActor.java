@@ -2,6 +2,7 @@ package com.example.demo.entities;
 
 
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Basic;
@@ -18,6 +19,7 @@ import javax.persistence.TemporalType;
 import com.example.demo.entities.composedkey.FilmActorId;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,11 +32,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class FilmActor {
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class FilmActor implements Serializable {
+
 
 	
-	
-	
+	private static final long serialVersionUID = -7000620354023393312L;
+
+
 	@EmbeddedId
 	private FilmActorId id;
 	

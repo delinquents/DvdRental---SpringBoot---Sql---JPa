@@ -1,7 +1,7 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +34,7 @@ import lombok.Setter;
 public class Address implements Serializable {
 	
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 8937712312082870989L;
 
 	@Id

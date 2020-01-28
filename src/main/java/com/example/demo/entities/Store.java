@@ -34,9 +34,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Store implements Serializable {
-	/**
-	* 
-	*/
+
+	
 	private static final long serialVersionUID = 8358313117087384937L;
 
 	@Id

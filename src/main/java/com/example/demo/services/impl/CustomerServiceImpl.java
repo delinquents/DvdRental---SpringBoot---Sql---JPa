@@ -1,4 +1,4 @@
-package com.example.demo.services;
+package com.example.demo.services.impl;
 
 import java.util.List;
 
@@ -7,9 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Customer;
 import com.example.demo.repositories.CustomerRepository;
+import com.example.demo.service.CustomerService;
 
 @Service
-public class CustomerService {
+public class CustomerServiceImpl implements CustomerService {
 
 	
 	@Autowired

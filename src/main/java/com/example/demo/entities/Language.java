@@ -38,9 +38,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Language  implements Serializable {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 655393983951552693L;
 
 	@Id

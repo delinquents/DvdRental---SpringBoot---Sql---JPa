@@ -1,0 +1,19 @@
+This are all GET-request:
+
+1)  http://localhost:8080/dvd-rental?page=0&limit=5  --> list of Actors included pagination
+2)  http://localhost:8080/dvd-rental/films   --> list of Films
+3)  http://localhost:8080/dvd-rental/film_category  --> list of Film Category
+4)  http://localhost:8080/dvd-rental/films/1  --> Selected Film By Id
+5)  http://localhost:8080/dvd-rental/categories  --> list of Categories
+6)  http://localhost:8080/dvd-rental/countries  --> list of Countries
+7)  http://localhost:8080/dvd-rental/cities   --> list of Cities
+8)  http://localhost:8080/dvd-rental/addresses  --> list of Addresses
+9)  http://localhost:8080/dvd-rental/customers  --> list of Customers
+10) http://localhost:8080/dvd-rental/staffs  --> list of Staffs
+11) http://localhost:8080/dvd-rental/inventories?page=0&limit=5 --> list of Inventories included pagination
+12) http://localhost:8080/dvd-rental/stores --> list of Stores
+13) http://localhost:8080/dvd-rental/rentals?page=0&limit=5  --> list of Rentals included pagination
+14) http://localhost:8080/dvd-rental/payments?page=0&limit=5  --> list of Payments included pagination
+15) http://localhost:8080/dvd-rental/film_actor --> list of Film Actor
+16) http://localhost:8080/dvd-rental/filmView  --> list of Film view
+17) ...

@@ -1,4 +1,4 @@
-package com.example.demo.services;
+package com.example.demo.services.impl;
 
 import java.util.List;
 
@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Country;
 import com.example.demo.repositories.CountryRepository;
+import com.example.demo.service.CountryService;
+
 
 @Service
-public class CountryService {
+public class CountryServiceImpl implements CountryService{
 
 	@Autowired
 	private CountryRepository countryRepository;

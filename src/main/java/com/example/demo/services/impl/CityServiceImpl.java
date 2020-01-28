@@ -1,4 +1,4 @@
-package com.example.demo.services;
+package com.example.demo.services.impl;
 
 import java.util.List;
 
@@ -9,15 +9,18 @@ import com.example.demo.entities.Address;
 import com.example.demo.entities.City;
 import com.example.demo.repositories.AddressRepository;
 import com.example.demo.repositories.CityRepository;
+import com.example.demo.service.CityService;
 
 @Service
-public class CityService {
+public class CityServiceImpl implements CityService {
 
 	
 	@Autowired
 	private CityRepository cityRepository;
 	@Autowired
 	private AddressRepository addressRepository;
+	
+	
 	
 	public List<City> getAllCities() {
 		
