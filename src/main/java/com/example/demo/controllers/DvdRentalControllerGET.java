@@ -2,7 +2,7 @@ package com.example.demo.controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,7 +40,7 @@ import com.example.demo.services.impl.StoreServiceImpl;
 
 @RestController
 @RequestMapping("dvd-rental")
-public class DvdRentalController {
+public class DvdRentalControllerGET {
 
 	
 	private ActorServiceImpl actorService;
@@ -58,7 +58,7 @@ public class DvdRentalController {
 
 
 
-	public DvdRentalController(ActorServiceImpl actorService, FilmServiceImpl filmService, CategoryServiceImpl categoryService,
+	public DvdRentalControllerGET(ActorServiceImpl actorService, FilmServiceImpl filmService, CategoryServiceImpl categoryService,
 			CountryServiceImpl countryService, CityServiceImpl cityService, CustomerServiceImpl customerService,
 			StaffServiceImpl staffService, StoreServiceImpl storeService, RentalServiceImpl rentalService,
 			PaymentServiceImpl paymentService, FilmListViewServiceImpl filmViewService) {		
@@ -75,6 +75,18 @@ public class DvdRentalController {
 		this.filmViewService = filmViewService;
 	}
 	
+	
+	
+	
+	// http://localhost:8080/dvd-rental/actors
+	@GetMapping("/actors")
+	public List<Actor> getActors() {
+
+		List<Actor> actors = actorService.getAllActorsFromGeneric();
+		return actors;
+
+	}
+
 	
 	// http://localhost:8080/dvd-rental?page=0&limit=5
 	@GetMapping
@@ -216,7 +228,7 @@ public class DvdRentalController {
 			
 			return filmsView;
 		}
-		
+		// http://localhost:8080/dvd-rental/inventory/1
 		@GetMapping("/inventory/{id}")
 		public Boolean isInventoryInStock(@PathVariable int id) {
 			Boolean inStock = storeService.isInvetoryInStock(id);

@@ -1,6 +1,7 @@
 package com.example.demo.services.impl;
 
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,11 @@ import com.example.demo.entities.Actor;
 import com.example.demo.entities.FilmActor;
 import com.example.demo.repositories.ActorRepository;
 import com.example.demo.repositories.FilmActorRepository;
+import com.example.demo.repositories.GenericDAOWithJPA;
 import com.example.demo.service.ActorService;
 
 @Service
-public class ActorServiceImpl implements ActorService {
+public class ActorServiceImpl extends GenericDAOWithJPA<Actor, Integer > implements ActorService {
 	
   @Autowired
   private ActorRepository actorRepository;
@@ -33,8 +35,17 @@ public class ActorServiceImpl implements ActorService {
 	  return pagedResult.getContent();
   }
   
+  public List<Actor> getAllActorsFromGeneric() {	  
+	  
+	List<Actor> actors = super.findAll();
+	  
+	  return actors;
+  }
   
-  public List<FilmActor> getAllFilmActors() {
+  
+
+
+public List<FilmActor> getAllFilmActors() {
 	  
 	  List<FilmActor> filmActors = filmActorRepository.findAll();
 	  
