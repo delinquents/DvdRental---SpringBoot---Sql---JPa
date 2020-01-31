@@ -2,7 +2,7 @@ package com.example.demo.controllers;
 
 import java.util.List;
 
-
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +39,7 @@ import com.example.demo.services.impl.StoreServiceImpl;
 
 
 @RestController
-@RequestMapping("dvd-rental")
+@RequestMapping("/api/dvd-rental/")
 public class DvdRentalControllerGET {
 
 	
@@ -79,7 +79,7 @@ public class DvdRentalControllerGET {
 	
 	
 	// http://localhost:8080/dvd-rental/actors
-	@GetMapping("/actors")
+	@GetMapping("/allActors")
 	public List<Actor> getActors() {
 
 		List<Actor> actors = actorService.getAllActorsFromGeneric();
@@ -88,8 +88,9 @@ public class DvdRentalControllerGET {
 	}
 
 	
-	// http://localhost:8080/dvd-rental?page=0&limit=5
-	@GetMapping
+	// http://localhost:8080/api/dvd-rental?page=0&limit=5 
+	@GetMapping("/actors")
+	@PreAuthorize("hasRole('MODERATOR')")
 	public List<Actor> getActors(@RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value = "limit", defaultValue = "25") int limit) {
 
@@ -99,6 +100,7 @@ public class DvdRentalControllerGET {
 
 	}
 	// http://localhost:8080/dvd-rental/films
+	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/films")
 	public List<Film> getFilms() {
 
@@ -107,6 +109,7 @@ public class DvdRentalControllerGET {
 
 	// http://localhost:8080/dvd-rental/film_category
 	@GetMapping("/film_category")
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<FilmCategory> getFilmsCategories() {
 
 		List<FilmCategory> filmCats = filmService.getListOfFilmCategories();

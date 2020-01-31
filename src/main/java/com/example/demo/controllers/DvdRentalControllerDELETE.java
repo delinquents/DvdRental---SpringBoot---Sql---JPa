@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("dvd-rental")
+@RequestMapping("/api/dvd-rental/")
 public class DvdRentalControllerDELETE {
 
 	
